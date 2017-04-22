@@ -90,7 +90,7 @@ service-worker: true
 # Friends
 friends: [
     {
-      title:"YING BANG BANG"
-      href:"#"
+      title: "YING BANG BANG",
+      href: "#"
     }
 ]
