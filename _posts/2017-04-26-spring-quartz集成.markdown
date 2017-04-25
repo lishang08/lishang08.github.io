@@ -1,4 +1,3 @@
-2017-04-26-spring-quartz集成.markdown
 ---
 layout:     post
 title:      "spring-quartz 集成"
