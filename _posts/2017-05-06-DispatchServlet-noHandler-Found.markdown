@@ -19,7 +19,7 @@ DispatcherServlet noHandler Found
 <p id = "build"></p>
 ## 寻找解决方法
 
-1. web.xml配置不正确？
+1。 web.xml配置不正确？
 
 仔细察看了web.xml， 没有发现什么问题
 ```
@@ -75,7 +75,7 @@ DispatcherServlet noHandler Found
 </web-app>
 ```
 <p id = "build"></p>
-2. view的解析，好像也没有什么问题
+2。 view的解析，好像也没有什么问题
 <p id = "build"></p>
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -129,8 +129,7 @@ DispatcherServlet noHandler Found
     </welcome-file-list>
 </web-app>
 ```
-<p id = "build"></p>
-<p>3. Controller没写对？ --> 问题就出现在这里， 对于annotation-driven来说，每个Controller都必须在Class头添加@Controller</p>
+3。 Controller没写对？ --> 问题就出现在这里， 对于annotation-driven来说，每个Controller都必须在Class头添加@Controller</p>
 <p id = "build"></p>
 <p>Ok,问题解决！！！</p>
 
