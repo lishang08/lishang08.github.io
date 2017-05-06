@@ -131,5 +131,21 @@ DispatcherServlet noHandler Found
 <p id = "build"></p>
 Ok,问题解决！！！
 
+
+
+<servlet>  
+  <servlet-name>spring</servlet-name>  
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
+  <init-param>  
+     <param-name>contextConfigLocation</param-name>  
+     <param-value>/WEB-INF/springContext.xml</param-value>  
+  </init-param>  
+</servlet>  
+  
+<servlet-mapping>  
+  <servlet-name>spring</servlet-name>  
+  <url-pattern>/*</url-pattern>  
+</servlet-mapping>  
+
 Marked on 20170506 by SamFu
 
