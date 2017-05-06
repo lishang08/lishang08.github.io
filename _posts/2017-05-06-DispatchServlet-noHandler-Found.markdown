@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      "spring-quartz 集成"
-subtitle:   " \"spring quartz 集成\""
-date:       2017-04-26 01:17:00
+title:      "DispatcherServlet noHandler Found"
+subtitle:   " \"DispatcherServlet noHandler Found\""
+date:       2017-05-06 12:58:00
 author:     "Lishang"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
@@ -10,11 +10,13 @@ tags:
     - 技术
 ---
 
-## 问题：DispatcherServlet noHandler Found
-
+## 问题
+DispatcherServlet noHandler Found
+<p id = "build"></p>
 ## Log
+<p id = "build"></p>
 [2316][WARN][http-bio-8089-exec-3] 12:47:14,787 method:org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1080) No mapping found for HTTP request with URI [/spring-quartz/] in DispatcherServlet with name 'springmvc'
-
+<p id = "build"></p>
 ## 寻找解决方法
 
 1. web.xml配置不正确？
@@ -71,9 +73,9 @@ tags:
         <welcome-file>list-schedule-job.shtml</welcome-file>
     </welcome-file-list>
 </web-app>
-
+<p id = "build"></p>
 2. view的解析，好像也没有什么问题
-
+<p id = "build"></p>
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://java.sun.com/xml/ns/javaee"
@@ -124,9 +126,9 @@ tags:
         <welcome-file>list-schedule-job.shtml</welcome-file>
     </welcome-file-list>
 </web-app>
-
+<p id = "build"></p>
 3. Controller没写对？ --> 问题就出现在这里， 对于annotation-driven来说，每个Controller都必须在Class头添加@Controller
-
+<p id = "build"></p>
 Ok,问题解决！！！
 
 Marked on 20170506 by SamFu
