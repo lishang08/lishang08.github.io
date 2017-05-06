@@ -22,7 +22,7 @@ DispatcherServlet noHandler Found
 1. web.xml配置不正确？
 
 仔细察看了web.xml， 没有发现什么问题
-<pre class="xml" name="code"> 
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://java.sun.com/xml/ns/javaee"
@@ -73,12 +73,11 @@ DispatcherServlet noHandler Found
         <welcome-file>list-schedule-job.shtml</welcome-file>
     </welcome-file-list>
 </web-app>
-</pre>
+```
 <p id = "build"></p>
 2. view的解析，好像也没有什么问题
 <p id = "build"></p>
-
-<pre class="xml" name="code"> 
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://java.sun.com/xml/ns/javaee"
@@ -129,7 +128,7 @@ DispatcherServlet noHandler Found
         <welcome-file>list-schedule-job.shtml</welcome-file>
     </welcome-file-list>
 </web-app>
-</pre>
+```
 <p id = "build"></p>
 <p>3. Controller没写对？ --> 问题就出现在这里， 对于annotation-driven来说，每个Controller都必须在Class头添加@Controller</p>
 <p id = "build"></p>
