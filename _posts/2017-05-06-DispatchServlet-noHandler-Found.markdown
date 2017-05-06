@@ -74,7 +74,6 @@ DispatcherServlet noHandler Found
     </welcome-file-list>
 </web-app>
 ```
-<p id = "build"></p>
 2。 view的解析，好像也没有什么问题
 <p id = "build"></p>
 ```
@@ -129,8 +128,29 @@ DispatcherServlet noHandler Found
     </welcome-file-list>
 </web-app>
 ```
-3。 Controller没写对？ --> 问题就出现在这里， 对于annotation-driven来说，每个Controller都必须在Class头添加@Controller</p>
-<p id = "build"></p>
+3。 Controller没写对？ --> 问题就出现在这里， 对于annotation-driven来说，每个Controller都必须在Class头添加@Controller
+```
+@Controller
+public class ScheduleJobController {
+
+    /**
+     * 任务列表
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "list-schedule-job", method = RequestMethod.GET)
+    public String listScheduleJob(ModelMap modelMap) {
+        return "list-schedule-job";
+    }
+    
+    @RequestMapping(value = "input-schedule-job", method = RequestMethod.GET) 
+    public String inputScheduleJob(ModelMap modelMap) {
+        return "input-schedule-job";
+    }
+    
+}
+```
+
 <p>Ok,问题解决！！！</p>
 
 Marked on 20170506 by SamFu
