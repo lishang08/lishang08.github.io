@@ -23,7 +23,7 @@ Quartz 中cron的输入是有格式要求的，正确的格式应该如下：
 ```
 
 如果出现格式错误，会报如下错误：
-
+```
 type Exception report
 
 message Request processing failed; nested exception is java.lang.RuntimeException: CronExpression '*/5 * * * *' is invalid.
@@ -90,3 +90,4 @@ java.text.ParseException: Unexpected end of expression.
 	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
 	org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
 	org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:76)
+```
