@@ -13,14 +13,14 @@ tags:
 ##正文
 
 Quartz 中cron的输入是有格式要求的，正确的格式应该如下：
-
+```
 <bean id="*****"
        	class="org.springframework.scheduling.quartz.CronTriggerBean">
       	<property name="jobDetail" ref="job****" />
       	<!-- 每5分钟一次调度 -->
       	<property name="cronExpression" value="0 0/5 * * * ?" />
 </bean>
-
+```
 
 如果出现格式错误，会报如下错误：
 
