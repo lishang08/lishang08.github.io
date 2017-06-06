@@ -1,8 +1,8 @@
 ---
 layout:     post
 title:      "PHP 学习笔记"
-subtitle:   " \"Hello World, Hello Blog\""
-date:       2017-06－07 00:56:00
+subtitle:   " \"PHP 学习笔记\""
+date:       2017-06-07 00:56:00
 author:     "Lishang"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
@@ -52,4 +52,6 @@ htmlspecialchars() 函数把特殊字符转换为 HTML 实体。现在，如果�
 <form method="post" action="test_form.php/"><script>alert('hacked')</script>">
 ```
 无法利用，没有危害！
+
+
 
