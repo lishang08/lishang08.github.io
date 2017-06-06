@@ -53,5 +53,83 @@ htmlspecialchars() 函数把特殊字符转换为 HTML 实体。现在，如果�
 ```
 无法利用，没有危害！
 
+<h2>PHP - 输入字段</h2>
+
+<p>从上一节中的验证规则中，我们看到 &quot;Name&quot;, &quot;E-mail&quot; 以及 &quot;Gender&quot; 字段是必需的。这些字段不能为空且必须在 HTML 表单中填写。</p>
+```
+<table class="dataintable">
+<tr>
+<th style="width:25%;">字段</th>
+<th>验证规则</th>
+</tr>
+
+<tr>
+<td>Name</td>
+<td>必需。必须包含字母和空格。</td>
+</tr>
+
+<tr>
+<td>E-mail</td>
+<td>必需。必须包含有效的电子邮件地址（包含 @ 和 .）。</td>
+</tr>
+
+<tr>
+<td>Website</td>
+<td>可选。如果选填，则必须包含有效的 URL。</td>
+</tr>
+
+<tr>
+<td>Comment</td>
+<td>可选。多行输入字段（文本框）。</td>
+</tr>
+
+<tr>
+<td>Gender</td>
+<td>必需。必须选择一项。</td>
+</tr>
+</table>
+
+<p>在上一节中，所有输入字段都是可选的。</p>
+
+<p>在下面的代码中我们增加了一些新变量：$nameErr、$emailErr、$genderErr 以及 $websiteErr。这些错误变量会保存被请求字段的错误消息。我们还为每个 $_POST 变量添加了一个 if else 语句。这条语句检查 $_POST 变量是否为空（通过 PHP empty() 函数）。如果为空，则错误消息会存储于不同的错误变量中。如果不为空，则通过 test_input() 函数发送用户输入数据：</p>
+
+&lt;?php
+<span class="code_comment">// 定义变量并设置为空值</span>
+$nameErr = $emailErr = $genderErr = $websiteErr = &quot;&quot;;
+$name = $email = $gender = $comment = $website = &quot;&quot;;
+
+if ($_SERVER[&quot;REQUEST_METHOD&quot;] == &quot;POST&quot;) {
+  if (empty($_POST[&quot;name&quot;])) {
+    $nameErr = &quot;Name is required&quot;;
+  } else {
+    $name = test_input($_POST[&quot;name&quot;]);
+  }
+
+  if (empty($_POST[&quot;email&quot;])) {
+    $emailErr = &quot;Email is required&quot;;
+  } else {
+    $email = test_input($_POST[&quot;email&quot;]);
+  }
+
+  if (empty($_POST[&quot;website&quot;])) {
+    $website = &quot;&quot;;
+  } else {
+    $website = test_input($_POST[&quot;website&quot;]);
+  }
+
+  if (empty($_POST[&quot;comment&quot;])) {
+    $comment = &quot;&quot;;
+  } else {
+    $comment = test_input($_POST[&quot;comment&quot;]);
+  }
+
+  if (empty($_POST[&quot;gender&quot;])) {
+    $genderErr = &quot;Gender is required&quot;;
+  } else {
+    $gender = test_input($_POST[&quot;gender&quot;]);
+  }
+}
+?&gt;
+```
 
 
