@@ -1,0 +1,47 @@
+---
+layout:     post
+title:      "加快maven依赖下载速度"
+subtitle:   " \"加快maven依赖下载速度\""
+date:       2017-04-24 23:26:00
+author:     "Lishang"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - maven
+---
+
+## 正文
+
+使用Maven构建项目时，项目中有的依赖包可能下载的非常慢，我们可以通过配置镜像来解决这个问题。 
+之前开源中国的那个好像已经关闭了，于是我找到了一个阿里的来解决。 
+在Maven的配置文件（%MAVEN%/conf/setting.xml）中的< mirrors> 标签中加入
+
+
+      <!-- 阿里云仓库 -->
+      <mirror>
+           <id>alimaven</id>
+           <mirrorOf>central</mirrorOf>
+           <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+         </mirror>
+
+       <!-- 中央仓库1 -->
+        <mirror>
+            <id>repo1</id>
+            <mirrorOf>central</mirrorOf>
+            <name>Human Readable Name for this Mirror.</name>
+            <url>http://repo1.maven.org/maven2/</url>
+         </mirror>
+        <!-- 中央仓库2 -->
+        <mirror>
+           <id>repo2</id>
+           <mirrorOf>central</mirrorOf>
+            <name>Human Readable Name for this Mirror.</name>
+           <url>http://repo2.maven.org/maven2/</url>
+        </mirror>
+
+这样我们在引入依赖的时候，速度就可以嗖嗖的了。 
+注意：有的版本比较高的依赖包，这个阿里的仓库也可能没有。所以要么用老的依赖，要么删掉镜像配置，继续去中央仓库下载最新的依赖。
+
+--lishang, 记于20170424
+

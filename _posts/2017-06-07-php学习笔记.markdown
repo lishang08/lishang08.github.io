@@ -1,0 +1,135 @@
+---
+layout:     post
+title:      "PHP 学习笔记"
+subtitle:   " \"PHP 学习笔记\""
+date:       2017-06-07 00:56:00
+author:     "Lishang"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - 技术
+---
+
+
+## GET vs. POST
+
+GET 和 POST 都创建数组（例如，array( key => value, key2 => value2, key3 => value3, ...)）。此数组包含键/值对，其中的键是表单控件的名称，而值是来自用户的输入数据。
+
+GET 和 POST 被视作 $_GET 和 $_POST。它们是超全局变量，这意味着对它们的访问无需考虑作用域 - 无需任何特殊代码，您能够从任何函数、类或文件访问它们。
+
+$_GET 是通过 URL 参数传递到当前脚本的变量数组。
+
+$_POST 是通过 HTTP POST 传递到当前脚本的变量数组。
+
+
+何时使用 GET？
+
+通过 GET 方法从表单发送的信息对任何人都是可见的（所有变量名和值都显示在 URL 中）。GET 对所发送信息的数量也有限制。限制在大于 2000 个字符。不过，由于变量显示在 URL 中，把页面添加到书签中也更为方便。
+
+GET 可用于发送非敏感的数据。
+
+注释：绝不能使用 GET 来发送密码或其他敏感信息！
+
+## 何时使用 POST？
+
+通过 POST 方法从表单发送的信息对其他人是不可见的（所有名称/值会被嵌入 HTTP 请求的主体中），并且对所发送信息的数量也无限制。
+
+此外 POST 支持高阶功能，比如在向服务器上传文件时进行 multi-part 二进制输入。
+
+不过，由于变量未显示在 URL 中，也就无法将页面添加到书签。
+
+提示：开发者偏爱 POST 来发送表单数据。
+
+如果避免 $_SERVER["PHP_SELF"] 被利用？
+通过使用 htmlspecialchars() 函数能够避免 $_SERVER["PHP_SELF"] 被利用。
+
+表单代码是这样的：
+```
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+```
+htmlspecialchars() 函数把特殊字符转换为 HTML 实体。现在，如果用户试图利用 PHP_SELF 变量，会导致如下输出：
+```
+<form method="post" action="test_form.php/"><script>alert('hacked')</script>">
+```
+无法利用，没有危害！
+
+<h2>PHP - 输入字段</h2>
+
+<p>从上一节中的验证规则中，我们看到 &quot;Name&quot;, &quot;E-mail&quot; 以及 &quot;Gender&quot; 字段是必需的。这些字段不能为空且必须在 HTML 表单中填写。</p>
+```
+<table class="dataintable">
+<tr>
+<th style="width:25%;">字段</th>
+<th>验证规则</th>
+</tr>
+
+<tr>
+<td>Name</td>
+<td>必需。必须包含字母和空格。</td>
+</tr>
+
+<tr>
+<td>E-mail</td>
+<td>必需。必须包含有效的电子邮件地址（包含 @ 和 .）。</td>
+</tr>
+
+<tr>
+<td>Website</td>
+<td>可选。如果选填，则必须包含有效的 URL。</td>
+</tr>
+
+<tr>
+<td>Comment</td>
+<td>可选。多行输入字段（文本框）。</td>
+</tr>
+
+<tr>
+<td>Gender</td>
+<td>必需。必须选择一项。</td>
+</tr>
+</table>
+
+<p>在上一节中，所有输入字段都是可选的。</p>
+
+<p>在下面的代码中我们增加了一些新变量：$nameErr、$emailErr、$genderErr 以及 $websiteErr。这些错误变量会保存被请求字段的错误消息。我们还为每个 $_POST 变量添加了一个 if else 语句。这条语句检查 $_POST 变量是否为空（通过 PHP empty() 函数）。如果为空，则错误消息会存储于不同的错误变量中。如果不为空，则通过 test_input() 函数发送用户输入数据：</p>
+
+&lt;?php
+<span class="code_comment">// 定义变量并设置为空值</span>
+$nameErr = $emailErr = $genderErr = $websiteErr = &quot;&quot;;
+$name = $email = $gender = $comment = $website = &quot;&quot;;
+
+if ($_SERVER[&quot;REQUEST_METHOD&quot;] == &quot;POST&quot;) {
+  if (empty($_POST[&quot;name&quot;])) {
+    $nameErr = &quot;Name is required&quot;;
+  } else {
+    $name = test_input($_POST[&quot;name&quot;]);
+  }
+
+  if (empty($_POST[&quot;email&quot;])) {
+    $emailErr = &quot;Email is required&quot;;
+  } else {
+    $email = test_input($_POST[&quot;email&quot;]);
+  }
+
+  if (empty($_POST[&quot;website&quot;])) {
+    $website = &quot;&quot;;
+  } else {
+    $website = test_input($_POST[&quot;website&quot;]);
+  }
+
+  if (empty($_POST[&quot;comment&quot;])) {
+    $comment = &quot;&quot;;
+  } else {
+    $comment = test_input($_POST[&quot;comment&quot;]);
+  }
+
+  if (empty($_POST[&quot;gender&quot;])) {
+    $genderErr = &quot;Gender is required&quot;;
+  } else {
+    $gender = test_input($_POST[&quot;gender&quot;]);
+  }
+}
+?&gt;
+```
+
+
